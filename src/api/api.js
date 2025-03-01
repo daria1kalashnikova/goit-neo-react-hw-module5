@@ -20,3 +20,9 @@ export async function fetchMovieByQuery(movieQuery) {
   );
   return response.data;
 }
+
+// const url = "https://api.themoviedb.org/3/movie/454?language=en-US";
+export const fetchMovieById = async (movieId) => {
+  const response = await axios.get(`/movie/${movieId}?language=en-US`);
+  return response.data;
+};
