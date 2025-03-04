@@ -8,8 +8,9 @@ import { fetchMovieByQuery } from "/src/api/api";
 
 function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [moviesNotFound, setMoviesNotFound] = useState(false);
   const [movies, setMovies] = useState([]);
+
   function handleSearch(query) {
     setSearchParams({ query });
   }
@@ -20,16 +21,21 @@ function MoviesPage() {
       return;
     }
 
-    fetchMovieByQuery(query).then((data) => setMovies(data.results));
+    fetchMovieByQuery(query).then((data) => {
+      setMoviesNotFound(false);
 
-    console.log(searchParams);
+      if (data.results.length != 0) {
+        setMovies(data.results);
+      } else {
+        setMoviesNotFound(true);
+      }
+    });
   }, [searchParams]);
 
-  console.log(searchParams);
   return (
-    <div>
+    <div className="container">
       <SearchBar onSearch={handleSearch} />
-      <MovieList movies={movies} />
+      <MovieList movies={movies} moviesNotFound={moviesNotFound} />
     </div>
   );
 }

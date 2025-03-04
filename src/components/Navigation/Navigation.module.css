@@ -1,0 +1,15 @@
+.navigation {
+  background-color: rgba(34, 209, 244, 0.855);
+  padding: 20px 40px;
+}
+
+.navigation-list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navigation-link {
+  text-decoration: none;
+  font-weight: 700;
+}

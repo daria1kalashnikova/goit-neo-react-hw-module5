@@ -1,4 +1,5 @@
-import style from "./SearchBar.module.css";
+import css from "./SearchBar.module.css";
+import toast from "react-hot-toast";
 
 function SearchBar({ onSearch }) {
   function handleSubmit(event) {
@@ -12,14 +13,14 @@ function SearchBar({ onSearch }) {
       form.reset();
       return onSearch(query.toLowerCase());
     } else {
-      //   toast.error("Please enter a search query");
+      toast.error("Please enter a search query");
     }
   }
 
   return (
-    <form className={style.searchForm} onSubmit={handleSubmit}>
+    <form className={css["search-form"]} onSubmit={handleSubmit}>
       <input
-        className={style.searchInput}
+        className={css["search-input"]}
         type="text"
         autoComplete="off"
         autoFocus
